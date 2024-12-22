@@ -1,25 +1,14 @@
 # esp8266-relay
 Esp8266 project to control 4 relays in Normally Open mode. It inherit from this [project](https://github.com/lauroro/esp8266-relay).
+This is an alternative ESP8266 firmware for the relay board made by LCTech-inc.
+
+# The board
+This board is a two-way relay over WiFi in a compact form factor and with a 3.3v onboard regulator to power the ESP8266
+Version 1.2 support four-way boards as well.
+![LcTech board](img/board.jpg)
+See http://www.chinalctech.com/cpzx/Programmer/Relay_Module/
 
 - **Pay attention while handling main voltage items**. Don't plug main voltage items while your esp is connected to your PC. Be sure to not touch exposed cables. Don't do anything if you don't know what you're doing please. If you are following this project just to try it don't use main voltage devices at all, just use your relay modules, as they have a built-in led that turns on and off giving you a harmless feedback.
-
-## Circuit
-With this project you can control 4 relay modules. Here I'll just show one, cause I only have one relay module at the moment, and so this is the circuit I made.
-
-### How to extend the circuit to control more than one module
-Connect the signal line as follows (refers to NodeMCU ESP8266):
-- Relay 0 --- D1
-- Relay 1 --- D2
-- Relay 2 --- D5
-- Relay 3 --- D6
-
-## What's needed
-- 1x Esp8266.
-- 1-4x Relay module
-- (Optional if you don't want to solder) 1x Breadboard
-- 3x Cables (or jumpers if you opt for the breadboard)
-- Arduino IDE
-- Clone this repo: you need both the sketch and the data folder.
 
 ## Libraries used
 1. If you use Arduino IDE be sure to [install esp8266 support](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/) first.
@@ -40,6 +29,7 @@ sketch/
       ꜔ main.js
       ꜔ on.svg
       ꜔ off.svg
+      ꜔ wifimanager.html
 ```
 Follow the LittleFS usage guide to flash the data/ content on the esp filesystem.
 
