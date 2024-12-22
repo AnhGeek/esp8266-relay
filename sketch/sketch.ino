@@ -12,15 +12,16 @@
 
 
 #define RELAYS_NUM      4
-#define RELAY_0         5   //D1 (GPIO 5)
-#define RELAY_1         4   //D2 (GPIO 4)
-#define RELAY_2         14  //D5 (GPIO 14)
-#define RELAY_3         12  //D6 (GPIO 12)
-
+const byte Relay_1_ON[] = {0xA0, 0x01, 0x01, 0xA2};
+const byte Relay_1_OFF[] = {0xA0, 0x01, 0x00, 0xA1};
+const byte Relay_2_ON[] = {0xA0, 0x02, 0x01, 0xA3};
+const byte Relay_2_OFF[] = {0xA0, 0x02, 0x00, 0xA2};
+const byte Relay_3_ON[] = {0xA0, 0x03, 0x01, 0xA4};
+const byte Relay_3_OFF[] = {0xA0, 0x03, 0x00, 0xA3};
+const byte Relay_4_ON[] = {0xA0, 0x04, 0x01, 0xA5};
+const byte Relay_4_OFF[] = {0xA0, 0x04, 0x00, 0xA4};
 
 //Wifi params
-//const char* ssid = "Hoang Anh";
-//const char* password = "999999999";
 //Variables to save values from HTML form
 String ssid;
 String pass;
@@ -106,11 +107,9 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     if(message.indexOf("toggle-r0") >= 0){
       r0 = !r0;
       if(!r0){
-        //digitalWrite(RELAY_0, LOW);
-        Serial.print("toggle0-r0");
+        Serial.write(Relay_1_ON, sizeof(Relay_1_ON));
       } else {
-        //digitalWrite(RELAY_0, HIGH);
-        Serial.print("toggle1-r0");
+        Serial.write(Relay_1_OFF, sizeof(Relay_1_OFF));
       }
       String msg = "r0";
       msg += boolToState(r0);
@@ -119,11 +118,9 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     else if(message.indexOf("toggle-r1") >= 0){
       r1 = !r1;
       if(!r1){
-        //digitalWrite(RELAY_1, LOW);
-        Serial.print("toggle0-r1");
+        Serial.write(Relay_2_ON, sizeof(Relay_2_ON));
       } else {
-        //digitalWrite(RELAY_1, HIGH);
-        Serial.print("toggle1-r1");
+        Serial.write(Relay_2_OFF, sizeof(Relay_2_OFF));
       }
       String msg = "r1";
       msg += boolToState(r1);
@@ -132,11 +129,9 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     else if(message.indexOf("toggle-r2") >= 0){
       r2 = !r2;
       if(!r2){
-        //digitalWrite(RELAY_2, LOW);
-        Serial.print("toggle0-r2");
+        Serial.write(Relay_3_ON, sizeof(Relay_3_ON));
       } else {
-        //digitalWrite(RELAY_2, HIGH);
-        Serial.print("toggle1-r2");
+        Serial.write(Relay_3_OFF, sizeof(Relay_3_OFF));
       }
       String msg = "r2";
       msg += boolToState(r2);  
@@ -145,11 +140,9 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {
     else if(message.indexOf("toggle-r3") >= 0){
       r3 = !r3;
       if(!r3){
-        //digitalWrite(RELAY_3, LOW);
-        Serial.print("toggle0-r3");
+        Serial.write(Relay_4_ON, sizeof(Relay_4_ON));
       } else {
-        //digitalWrite(RELAY_0, HIGH);
-        Serial.print("toggle1-r3");
+        Serial.write(Relay_4_OFF, sizeof(Relay_4_OFF));
       }
       String msg = "r3";
       msg += boolToState(r3);
@@ -202,21 +195,7 @@ bool initWiFi() {
 
 
 void setup() {
-  delay(2000);
   Serial.begin(115200);
-  Serial.println("Start");
-  //Set relay pins as output
-  //pinMode(RELAY_0, OUTPUT);
-  //pinMode(RELAY_1, OUTPUT);
-  //pinMode(RELAY_2, OUTPUT);
-  //pinMode(RELAY_3, OUTPUT);
-
-  //N.O. configurations: HIGH -> close the circuit, LOW -> open the circuit
-  //digitalWrite(RELAY_0, LOW);
-  //digitalWrite(RELAY_1, LOW);
-  //digitalWrite(RELAY_2, LOW);
-  //digitalWrite(RELAY_3, LOW);
-
   
   if (!LittleFS.begin()) {
     Serial.println("An error has occurred while mounting LittleFS");
