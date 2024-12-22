@@ -5,7 +5,9 @@ This is an alternative ESP8266 firmware for the relay board made by LCTech-inc.
 # The board
 This board is a two-way relay over WiFi in a compact form factor and with a 3.3v onboard regulator to power the ESP8266
 Version 1.2 support four-way boards as well.
+
 ![LcTech board](img/board.jpg)
+
 See http://www.chinalctech.com/cpzx/Programmer/Relay_Module/
 
 - **Pay attention while handling main voltage items**. Don't plug main voltage items while your esp is connected to your PC. Be sure to not touch exposed cables. Don't do anything if you don't know what you're doing please. If you are following this project just to try it don't use main voltage devices at all, just use your relay modules, as they have a built-in led that turns on and off giving you a harmless feedback.
