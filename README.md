@@ -1,5 +1,5 @@
 # esp8266-relay
-Esp8266 project to control 4 relays in Normally Open mode. It inherit from this [project](https://github.com/lauroro/esp8266-relay).
+Esp8266 project to control 4 relays in Normally Open mode. It inherited from this [project](https://github.com/lauroro/esp8266-relay).
 This is an alternative ESP8266 firmware for the relay board made by LCTech-inc.
 
 # The board
